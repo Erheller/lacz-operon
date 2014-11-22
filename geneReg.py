@@ -152,75 +152,91 @@ for line in fHandle:
         
         print "------------------------------------------\n|   I" + iFinal, "P" + pFinal, "O" + oFinal, "Z" + zFinal, "Y" + yFinal, "/", "F'", "I" + i2Final, "P" + p2Final, "O" + o2Final, "Z" + z2Final, "Y" + y2Final, "  |\n------------------------------------------"
         
+        userInput = raw_input ( 'Type "hint", "skip", or just hit enter.\n> ' )
         
-        # prints the characteristics of chromosome 1
-        print "Characteristics of chromosome 1:"
-        
-        if p == 1:
-            print "  Genes can be transcribed (working promoter)"
+        if userInput == "hint":
             
-            if o == 2:
-                print "  Operator is nonrepressible (mutant constitutive operator)"
-            elif o == 1:
-                print "  Operator is repressible (wild-type operator)"
-                
-            if z == 1:
-                print "  Z is activated"
-            elif z == 0:
-                print "  Z is inactivated"
-                
-            if y == 1:
-                print "  Y is activated"
-            elif y == 0:
-                print "  Y in inactivated"
+            # prints the characteristics of chromosome 1
+            print "\n\n\n--------------------------------------------------\nCharacteristics of chromosome 1:"
             
-        elif p == 0: 
-            print "  Genes cannot be transcribed (defective promoter)"
-        
-        
-        
-        
-        # prints the characteristics of chromosome 2
-        print "Characteristics of chromosome 2:"
-        
-        if p2 == 1:
-            print "  Genes can be transcribed (working promoter)"
-            
-            if o2 == 2:
-                print "  Operator is nonrepressible (mutant constitutive operator)"
-            elif o2 == 1:
-                print "  Operator is repressible (wild-type operator)"
+            if p == 1:
+                print "    Genes can be transcribed (working promoter)"
                 
-            if z2 == 1:
-                print "  Z is activated"
-            elif z2 == 0:
-                print "  Z is inactivated"
+                if o == 2:
+                    print "    Operator is nonrepressible (mutant constitutive operator)"
+                elif o == 1:
+                    print "    Operator is repressible (wild-type operator)"
+                    
+                if z == 1:
+                    print "    Z is activated"
+                elif z == 0:
+                    print "    Z is inactivated"
+                    
+                if y == 1:
+                    print "    Y is activated"
+                elif y == 0:
+                    print "    Y in inactivated"
                 
-            if y2 == 1:
-                print "  Y is activated"
-            elif y2 == 0:
-                print "  Y in inactivated"
+            elif p == 0: 
+                print "    Genes cannot be transcribed (defective promoter)"
             
-        elif p2 == 0: 
-            print "  Genes cannot be transcribed (defective promoter)"
+            
+            
+            
+            # prints the characteristics of chromosome 2
+            print "\nCharacteristics of chromosome 2:"
+            
+            if p2 == 1:
+                print "    Genes can be transcribed (working promoter)"
+                
+                if o2 == 2:
+                    print "    Operator is nonrepressible (mutant constitutive operator)"
+                elif o2 == 1:
+                    print "    Operator is repressible (wild-type operator)"
+                    
+                if z2 == 1:
+                    print "    Z is activated"
+                elif z2 == 0:
+                    print "    Z is inactivated"
+                    
+                if y2 == 1:
+                    print "    Y is activated"
+                elif y2 == 0:
+                    print "    Y in inactivated"
+                
+            elif p2 == 0: 
+                print "    Genes cannot be transcribed (defective promoter)"
+            
+            
+            # prints the status of the I gene
+            print "\nStatus of repressor:"
+            
+            if i >= i2:
+                ieffective = i
+                print "    The highest level repressor is I" + iFinal
+            
+            elif i2 > i:
+                ieffective = i2
+                print "    The highest level repressor is I" + i2Final
+                
+            else:
+                print "    Um, this is embarressing. Logic doesn't work anymore."
         
+            print "--------------------------------------------------"
+            userInput = raw_input ( "\n\n\nPress enter to see the answer...\n" )
         
-        # prints the status of the I gene
-        print "Status of repressor:"
+        elif userInput == "skip":
+            continue
+            
         
         if i >= i2:
             ieffective = i
-            print "  The highest level repressor is I" + iFinal
         
         elif i2 > i:
             ieffective = i2
-            print "  The highest level repressor is I" + i2Final
             
         else:
             print "  Um, this is embarressing. Logic doesn't work anymore."
-        
-        
-
 
 
 
@@ -429,7 +445,7 @@ for line in fHandle:
 
 
         
-        print "\nWhen an inducer is present:"
+        print "\n\n--------------------------------------------------\nWhen an inducer is present:"
         
         if zFinalInduced >= 1:
             print "    Z is expressed"
@@ -443,7 +459,7 @@ for line in fHandle:
 
 
             
-        print "When NO inducer is present:"
+        print "\nWhen NO inducer is present:"
         
         if zFinalNotInduced >= 1:
             print "    Z is expressed"
@@ -454,7 +470,10 @@ for line in fHandle:
             print "    Y is expressed"
         else:
             print "    Y is NOT expressed"        
-        
-#def parse (input_line)
-#    if re.search('[0-2][1][1-2][0-1]{4}', line):
-#        print "Hey, this works!"
+
+        print "--------------------------------------------------"    
+            
+            
+        userInput = raw_input ( "\n\nPress enter to go on to the next question...\n" )
+            
+print "Could not find any more problems. Terminating."
