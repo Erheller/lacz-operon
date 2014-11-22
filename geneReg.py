@@ -13,7 +13,7 @@ import re
 fName = "geneReg.txt"
 fHandle = open(fName)
 
-
+problemIndex = 0
 # parses each line
 for line in fHandle:
     
@@ -22,21 +22,32 @@ for line in fHandle:
         continue
         
     # if it's not a commented line, check if it's in the supported format
-    elif re.search('[0-2][0-1][1-2][0-1]{2}/[0-2][1][1-2][0-1]{2}/[0-1]{2}$', line):
+    elif re.search('[0-2][0-1][1-2][0-1]{2}[0-2][1][1-2][0-1]{2}$', line):
+    
+        problemIndex += 1
+        if problemIndex < 10:
+            foo = 1
+        elif problemIndex < 100:
+            foo = 2
+        elif problemIndex < 1000:
+            foo = 3
+        else:
+            print "You're crazy! Take a break!"
+            foo = 4
+        print "\n\n              ------------" + "-" * foo + "\n              | Problem", problemIndex, "|"
+        
         # grabs each number and sets it to a variable
         i = int(line[0:1])
         p = int(line[1:2])
         o = int(line[2:3])
         z = int(line[3:4])
         y = int(line[4:5])
-        i2 = int(line[6:7])
-        p2 = int(line[7:8])
-        o2 = int(line[8:9])
-        z2 = int(line[9:10])
-        y2 = int(line[10:11])
+        i2 = int(line[5:6])
+        p2 = int(line[6:7])
+        o2 = int(line[7:8])
+        z2 = int(line[8:9])
+        y2 = int(line[9:10])
 
-        g = int(line[12:13])
-        l = int(line[13:14])
 
 
         
@@ -136,79 +147,96 @@ for line in fHandle:
         
         # yay, an error message!
         if error == 1:
-            break
+            print "Yeah, there was an error for that one. Oops."
+            continue
         
-        print "\n------------------------------------------\n|   I" + iFinal, "P" + pFinal, "O" + oFinal, "Z" + zFinal, "Y" + yFinal, "/", "F'", "I" + i2Final, "P" + p2Final, "O" + o2Final, "Z" + z2Final, "Y" + y2Final, "  |\n------------------------------------------"
+        print "------------------------------------------\n|   I" + iFinal, "P" + pFinal, "O" + oFinal, "Z" + zFinal, "Y" + yFinal, "/", "F'", "I" + i2Final, "P" + p2Final, "O" + o2Final, "Z" + z2Final, "Y" + y2Final, "  |\n------------------------------------------"
         
+        userInput = raw_input ( 'Type "hint", "skip", or just hit enter.\n> ' )
         
-        # prints the characteristics of chromosome 1
-        print "Characteristics of chromosome 1:"
-        
-        if p == 1:
-            print "  Genes can be transcribed (working promoter)"
+        if userInput == "hint":
             
-            if o == 2:
-                print "  Operator is nonrepressible (mutant constitutive operator)"
-            elif o == 1:
-                print "  Operator is repressible (wild-type operator)"
-                
-            if z == 1:
-                print "  Z is activated"
-            elif z == 0:
-                print "  Z is inactivated"
-                
-            if y == 1:
-                print "  Y is activated"
-            elif y == 0:
-                print "  Y in inactivated"
+            # prints the characteristics of chromosome 1
+            print "\n\n\n--------------------------------------------------\nCharacteristics of chromosome 1:"
             
-        elif p == 0: 
-            print "  Genes cannot be transcribed (defective promoter)"
-        
-        
-        
-        
-        # prints the characteristics of chromosome 2
-        print "Characteristics of chromosome 2:"
-        
-        if p2 == 1:
-            print "  Genes can be transcribed (working promoter)"
-            
-            if o2 == 2:
-                print "  Operator is nonrepressible (mutant constitutive operator)"
-            elif o2 == 1:
-                print "  Operator is repressible (wild-type operator)"
+            if p == 1:
+                print "    Genes can be transcribed (working promoter)"
                 
-            if z2 == 1:
-                print "  Z is activated"
-            elif z2 == 0:
-                print "  Z is inactivated"
+                if o == 2:
+                    print "    Operator is nonrepressible (mutant constitutive operator)"
+                elif o == 1:
+                    print "    Operator is repressible (wild-type operator)"
+                    
+                if z == 1:
+                    print "    Z is activated"
+                elif z == 0:
+                    print "    Z is inactivated"
+                    
+                if y == 1:
+                    print "    Y is activated"
+                elif y == 0:
+                    print "    Y in inactivated"
                 
-            if y2 == 1:
-                print "  Y is activated"
-            elif y2 == 0:
-                print "  Y in inactivated"
+            elif p == 0: 
+                print "    Genes cannot be transcribed (defective promoter)"
             
-        elif p2 == 0: 
-            print "  Genes cannot be transcribed (defective promoter)"
+            
+            
+            
+            # prints the characteristics of chromosome 2
+            print "\nCharacteristics of chromosome 2:"
+            
+            if p2 == 1:
+                print "    Genes can be transcribed (working promoter)"
+                
+                if o2 == 2:
+                    print "    Operator is nonrepressible (mutant constitutive operator)"
+                elif o2 == 1:
+                    print "    Operator is repressible (wild-type operator)"
+                    
+                if z2 == 1:
+                    print "    Z is activated"
+                elif z2 == 0:
+                    print "    Z is inactivated"
+                    
+                if y2 == 1:
+                    print "    Y is activated"
+                elif y2 == 0:
+                    print "    Y in inactivated"
+                
+            elif p2 == 0: 
+                print "    Genes cannot be transcribed (defective promoter)"
+            
+            
+            # prints the status of the I gene
+            print "\nStatus of repressor:"
+            
+            if i >= i2:
+                ieffective = i
+                print "    The highest level repressor is I" + iFinal
+            
+            elif i2 > i:
+                ieffective = i2
+                print "    The highest level repressor is I" + i2Final
+                
+            else:
+                print "    Um, this is embarressing. Logic doesn't work anymore."
         
+            print "--------------------------------------------------"
+            userInput = raw_input ( "\n\n\nPress enter to see the answer...\n" )
         
-        # prints the status of the I gene
-        print "Status of repressor:"
+        elif userInput == "skip":
+            continue
+            
         
         if i >= i2:
             ieffective = i
-            print "  The highest level repressor is I" + iFinal
         
         elif i2 > i:
             ieffective = i2
-            print "  The highest level repressor is I" + i2Final
             
         else:
             print "  Um, this is embarressing. Logic doesn't work anymore."
-        
-        
-
 
 
 
@@ -306,11 +334,11 @@ for line in fHandle:
                         ynotinduced = 0
         
         # let's print out the results here for the first chromosome
-        print "\n"
-        print "Z with inducer:", zinduced
-        print "Z without inducer:", znotinduced
-        print "Y with inducer:", yinduced
-        print "Y without inducer:", ynotinduced
+        # print "\n"
+        # print "Z with inducer:", zinduced
+        # print "Z without inducer:", znotinduced
+        # print "Y with inducer:", yinduced
+        # print "Y without inducer:", ynotinduced
         
         
         
@@ -401,15 +429,51 @@ for line in fHandle:
                         y2induced = 0
                         y2notinduced = 0
         
-        # let's print out the results here for the first chromosome
-        print "\n"
-        print "Z with inducer:", z2induced
-        print "Z without inducer:", z2notinduced
-        print "Y with inducer:", y2induced
-        print "Y without inducer:", y2notinduced
+        # let's print out the results here for the second chromosome
+        # print "\n"
+        # print "Z with inducer:", z2induced
+        # print "Z without inducer:", z2notinduced
+        # print "Y with inducer:", y2induced
+        # print "Y without inducer:", y2notinduced
 
         
+        # if a protein is expressed in at least one of the two chromosomes, the stored variable will be at least 1.
+        zFinalInduced = zinduced + z2induced
+        zFinalNotInduced = znotinduced + z2notinduced
+        yFinalInduced = yinduced + y2induced
+        yFinalNotInduced = ynotinduced + y2notinduced
+
+
         
-#def parse (input_line)
-#    if re.search('[0-2][1][1-2][0-1]{4}', line):
-#        print "Hey, this works!"
+        print "\n\n--------------------------------------------------\nWhen an inducer is present:"
+        
+        if zFinalInduced >= 1:
+            print "    Z is expressed"
+        else:
+            print "    Z is NOT expressed"
+            
+        if yFinalInduced >= 1:
+            print "    Y is expressed"
+        else:
+            print "    Y is NOT expressed"
+
+
+            
+        print "\nWhen NO inducer is present:"
+        
+        if zFinalNotInduced >= 1:
+            print "    Z is expressed"
+        else:
+            print "    Z is NOT expressed"
+            
+        if yFinalNotInduced >= 1:
+            print "    Y is expressed"
+        else:
+            print "    Y is NOT expressed"        
+
+        print "--------------------------------------------------"    
+            
+            
+        userInput = raw_input ( "\n\nPress enter to go on to the next question...\n" )
+            
+print "Could not find any more problems. Terminating."
