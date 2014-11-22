@@ -1,11 +1,3 @@
-# What my program can do:
-    # parse and interpret lines of a specific format
-    # solve simple IPOZY problems based on that format
-# What I need it to do:
-    # have a random generator
-    # user inputs
-
-
 # imports the regular expression library
 import re
 
