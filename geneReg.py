@@ -22,7 +22,7 @@ for line in fHandle:
         continue
         
     # if it's not a commented line, check if it's in the supported format
-    elif re.search('[0-2][0-1][1-2][0-1]{2}/[0-2][1][1-2][0-1]{2}/[0-1]{2}$', line):
+    elif re.search('[0-2][0-1][1-2][0-1]{2}/[0-2][1][1-2][0-1]{2}$', line):
         # grabs each number and sets it to a variable
         i = int(line[0:1])
         p = int(line[1:2])
@@ -35,8 +35,6 @@ for line in fHandle:
         z2 = int(line[9:10])
         y2 = int(line[10:11])
 
-        g = int(line[12:13])
-        l = int(line[13:14])
 
 
         
