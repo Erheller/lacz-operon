@@ -22,7 +22,7 @@ for line in fHandle:
         continue
         
     # if it's not a commented line, check if it's in the supported format
-    elif re.search('[0-2][0-1][1-2][0-1]{2}/[0-2][1][1-2][0-1]{2}$', line):
+    elif re.search('[0-2][0-1][1-2][0-1]{2}[0-2][1][1-2][0-1]{2}$', line):
     
         problemIndex += 1
         if problemIndex < 10:
@@ -42,11 +42,11 @@ for line in fHandle:
         o = int(line[2:3])
         z = int(line[3:4])
         y = int(line[4:5])
-        i2 = int(line[6:7])
-        p2 = int(line[7:8])
-        o2 = int(line[8:9])
-        z2 = int(line[9:10])
-        y2 = int(line[10:11])
+        i2 = int(line[5:6])
+        p2 = int(line[6:7])
+        o2 = int(line[7:8])
+        z2 = int(line[8:9])
+        y2 = int(line[9:10])
 
 
 
