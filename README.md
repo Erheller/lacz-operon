@@ -13,10 +13,11 @@ Unfortunately for the experiment, Allied troops reached the laboratory where the
 I'd be lying if I said I spent more time on the story than on the program. At least I spent more time writing the story than writing the problem generator.
 
 
----------------------------------------------------
-| lac operon problem generator and quizzer thingy |
-|   version 0.1                                   |
----------------------------------------------------
+
+lac operon problem generator and quizzer thingy
+  version 0.1
+
+(apparently github readmes hate ascii art)
 
 This program takes predefined problems from geneReg.txt and solves the problems. The program can be used to check work, or to quiz oneself. The program can also give hints to each of the problems. A problem generator is included in case more problems are needed (geneReg.txt comes with 100 randomly-generated problems).
 
@@ -39,4 +40,4 @@ For questions, feedback, hatemail, or anything else, contact me at errheller@gma
 
 I spent way too much time on this, although I guess I really know the logic behind this stuff now. Hope it helps someone as it helped me!
 
-Kyle Wong - 02:47 11-22-14
+Kyle Wong - 02:49 11-22-14
