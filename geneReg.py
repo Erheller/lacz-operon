@@ -13,7 +13,7 @@ import re
 fName = "geneReg.txt"
 fHandle = open(fName)
 
-
+problemIndex = 0
 # parses each line
 for line in fHandle:
     
@@ -23,6 +23,19 @@ for line in fHandle:
         
     # if it's not a commented line, check if it's in the supported format
     elif re.search('[0-2][0-1][1-2][0-1]{2}/[0-2][1][1-2][0-1]{2}$', line):
+    
+        problemIndex += 1
+        if problemIndex < 10:
+            foo = 1
+        elif problemIndex < 100:
+            foo = 2
+        elif problemIndex < 1000:
+            foo = 3
+        else:
+            print "You're crazy! Take a break!"
+            foo = 4
+        print "\n\n              ------------" + "-" * foo + "\n              | Problem", problemIndex, "|"
+        
         # grabs each number and sets it to a variable
         i = int(line[0:1])
         p = int(line[1:2])
@@ -134,9 +147,10 @@ for line in fHandle:
         
         # yay, an error message!
         if error == 1:
-            break
+            print "Yeah, there was an error for that one. Oops."
+            continue
         
-        print "\n------------------------------------------\n|   I" + iFinal, "P" + pFinal, "O" + oFinal, "Z" + zFinal, "Y" + yFinal, "/", "F'", "I" + i2Final, "P" + p2Final, "O" + o2Final, "Z" + z2Final, "Y" + y2Final, "  |\n------------------------------------------"
+        print "------------------------------------------\n|   I" + iFinal, "P" + pFinal, "O" + oFinal, "Z" + zFinal, "Y" + yFinal, "/", "F'", "I" + i2Final, "P" + p2Final, "O" + o2Final, "Z" + z2Final, "Y" + y2Final, "  |\n------------------------------------------"
         
         
         # prints the characteristics of chromosome 1
@@ -304,11 +318,11 @@ for line in fHandle:
                         ynotinduced = 0
         
         # let's print out the results here for the first chromosome
-        print "\n"
-        print "Z with inducer:", zinduced
-        print "Z without inducer:", znotinduced
-        print "Y with inducer:", yinduced
-        print "Y without inducer:", ynotinduced
+        # print "\n"
+        # print "Z with inducer:", zinduced
+        # print "Z without inducer:", znotinduced
+        # print "Y with inducer:", yinduced
+        # print "Y without inducer:", ynotinduced
         
         
         
@@ -399,14 +413,47 @@ for line in fHandle:
                         y2induced = 0
                         y2notinduced = 0
         
-        # let's print out the results here for the first chromosome
-        print "\n"
-        print "Z with inducer:", z2induced
-        print "Z without inducer:", z2notinduced
-        print "Y with inducer:", y2induced
-        print "Y without inducer:", y2notinduced
+        # let's print out the results here for the second chromosome
+        # print "\n"
+        # print "Z with inducer:", z2induced
+        # print "Z without inducer:", z2notinduced
+        # print "Y with inducer:", y2induced
+        # print "Y without inducer:", y2notinduced
 
         
+        # if a protein is expressed in at least one of the two chromosomes, the stored variable will be at least 1.
+        zFinalInduced = zinduced + z2induced
+        zFinalNotInduced = znotinduced + z2notinduced
+        yFinalInduced = yinduced + y2induced
+        yFinalNotInduced = ynotinduced + y2notinduced
+
+
+        
+        print "\nWhen an inducer is present:"
+        
+        if zFinalInduced >= 1:
+            print "    Z is expressed"
+        else:
+            print "    Z is NOT expressed"
+            
+        if yFinalInduced >= 1:
+            print "    Y is expressed"
+        else:
+            print "    Y is NOT expressed"
+
+
+            
+        print "When NO inducer is present:"
+        
+        if zFinalNotInduced >= 1:
+            print "    Z is expressed"
+        else:
+            print "    Z is NOT expressed"
+            
+        if yFinalNotInduced >= 1:
+            print "    Y is expressed"
+        else:
+            print "    Y is NOT expressed"        
         
 #def parse (input_line)
 #    if re.search('[0-2][1][1-2][0-1]{4}', line):
