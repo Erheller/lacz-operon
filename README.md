@@ -15,6 +15,7 @@ I'd be lying if I said I spent more time on the story than on the program. At le
 
 
 lac operon problem generator and quizzer thingy
+===============================================
   version 0.1
 
 (apparently github readmes hate ascii art)
